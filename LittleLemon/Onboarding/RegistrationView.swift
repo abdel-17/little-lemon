@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnboardingView: View {
+struct RegistrationView: View {
     @State var registrationData = RegistrationData()
     
     var body: some View {
@@ -66,6 +66,6 @@ fileprivate struct SubmitButton: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        RegistrationView()
     }
 }

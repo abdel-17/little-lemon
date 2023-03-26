@@ -24,15 +24,15 @@ struct RegistrationData {
     
     static func load(from store: UserDefaults) -> RegistrationData? {
         guard
-            let firstName = store.string(forKey: RegistrationData.Keys.firstName),
-            let lastName = store.string(forKey: RegistrationData.Keys.lastName),
-            let email = store.string(forKey: RegistrationData.Keys.email)
+            let firstName = store.string(forKey: Keys.firstName),
+            let lastName = store.string(forKey: Keys.lastName),
+            let email = store.string(forKey: Keys.email)
         else {
             return nil
         }
         return RegistrationData(firstName: firstName,
-                        lastName: lastName,
-                        email: email)
+                                lastName: lastName,
+                                email: email)
     }
     
     func save(to store: UserDefaults) {

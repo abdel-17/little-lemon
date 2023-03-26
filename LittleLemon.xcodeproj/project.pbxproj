@@ -16,7 +16,7 @@
 		9ECA2C2029D071E500B698D9 /* LittleLemonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA2C1F29D071E500B698D9 /* LittleLemonTests.swift */; };
 		9ECA2C2A29D071E500B698D9 /* LittleLemonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA2C2929D071E500B698D9 /* LittleLemonUITests.swift */; };
 		9ECA2C2C29D071E500B698D9 /* LittleLemonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA2C2B29D071E500B698D9 /* LittleLemonUITestsLaunchTests.swift */; };
-		9ECFACE029D0DAB900EAB70A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFACDF29D0DAB900EAB70A /* OnboardingView.swift */; };
+		9ECFACE029D0DAB900EAB70A /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */; };
 		9ECFACE229D0E25400EAB70A /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFACE129D0E25400EAB70A /* RegistrationData.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +50,7 @@
 		9ECA2C2529D071E500B698D9 /* LittleLemonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleLemonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ECA2C2929D071E500B698D9 /* LittleLemonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonUITests.swift; sourceTree = "<group>"; };
 		9ECA2C2B29D071E500B698D9 /* LittleLemonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9ECFACDF29D0DAB900EAB70A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		9ECFACE129D0E25400EAB70A /* RegistrationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +141,7 @@
 		9ECFACDE29D0DAA500EAB70A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				9ECFACDF29D0DAB900EAB70A /* OnboardingView.swift */,
+				9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */,
 				9ECFACE129D0E25400EAB70A /* RegistrationData.swift */,
 			);
 			path = Onboarding;
@@ -281,7 +281,7 @@
 				9ECA2C1629D071E400B698D9 /* LittleLemon.xcdatamodeld in Sources */,
 				9ECA2C0C29D071E200B698D9 /* ContentView.swift in Sources */,
 				9ECA2C0A29D071E200B698D9 /* LittleLemonApp.swift in Sources */,
-				9ECFACE029D0DAB900EAB70A /* OnboardingView.swift in Sources */,
+				9ECFACE029D0DAB900EAB70A /* RegistrationView.swift in Sources */,
 				9ECFACE229D0E25400EAB70A /* RegistrationData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

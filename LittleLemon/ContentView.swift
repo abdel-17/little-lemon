@@ -9,14 +9,13 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    
     var body: some View {
         NavigationView {
             if let registrationData = RegistrationData.load(from: UserDefaults.standard) {
-                // Placeholder until main view is implemented
+                // Placeholder until the main view is implemented
                 EmptyView()
             } else {
-                OnboardingView()
+                RegistrationView()
             }
         }
     }
