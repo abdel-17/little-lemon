@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
+    let registrationData: RegistrationData
+    
     var body: some View {
         TabView {
             MenuTab()
                 .tabItem {
                     Label("Menu", systemImage: "list.dash")
+                }
+            
+            ProfileTab(registrationData: registrationData)
+                .tabItem {
+                    Label("Profile", systemImage: "square.and.pencil")
                 }
         }
         // Hide the back button to prevent the user from going
@@ -23,6 +30,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(registrationData: .fake)
     }
 }

@@ -18,20 +18,20 @@ struct RegistrationView: View {
             // instead of a NavigationView, but I'm not gonna bother
             // right now.
             NavigationLink(isActive: $isLoggedIn) {
-                HomeView()
+                HomeView(registrationData: registrationData)
             } label: {
                 EmptyView()
             }
             
-            FormInput(label: "First Name*",
+            FormInput(label: "First name*",
                       placeholder: "Enter your first name",
                       input: $registrationData.firstName)
             
-            FormInput(label: "Last Name*",
+            FormInput(label: "Last name*",
                       placeholder: "Enter your last name",
                       input: $registrationData.lastName)
             
-            FormInput(label: "Email*",
+            FormInput(label: "Email address*",
                       placeholder: "Enter your email address",
                       input: $registrationData.email)
             

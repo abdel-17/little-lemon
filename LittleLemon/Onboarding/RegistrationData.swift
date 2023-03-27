@@ -35,6 +35,12 @@ struct RegistrationData {
         static let email = "email"
     }
     
+    func save(to store: UserDefaults) {
+        store.set(firstName, forKey: RegistrationData.Keys.firstName)
+        store.set(lastName, forKey: RegistrationData.Keys.lastName)
+        store.set(email, forKey: RegistrationData.Keys.email)
+    }
+    
     static func load(from store: UserDefaults) -> RegistrationData? {
         guard
             let firstName = store.string(forKey: Keys.firstName),
@@ -48,9 +54,9 @@ struct RegistrationData {
                                 email: email)
     }
     
-    func save(to store: UserDefaults) {
-        store.set(firstName, forKey: RegistrationData.Keys.firstName)
-        store.set(lastName, forKey: RegistrationData.Keys.lastName)
-        store.set(email, forKey: RegistrationData.Keys.email)
+    static func delete(from store: UserDefaults) {
+        store.set(nil, forKey: RegistrationData.Keys.firstName)
+        store.set(nil, forKey: RegistrationData.Keys.lastName)
+        store.set(nil, forKey: RegistrationData.Keys.email)
     }
 }
