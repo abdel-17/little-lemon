@@ -20,6 +20,13 @@ struct RegistrationData {
         !email.isEmpty  // Email validation could be better
     }
     
+    /// Fake registration data.
+    ///
+    /// Use this mainly for previews.
+    static let fake = RegistrationData(firstName: "Ahmed",
+                                       lastName: "Mohamed",
+                                       email: "ahmedmohamed@gmail.com")
+    
     private struct Keys {
         static let firstName = "firstName"
         
@@ -42,8 +49,8 @@ struct RegistrationData {
     }
     
     func save(to store: UserDefaults) {
-        store.set(RegistrationData.Keys.firstName, forKey: firstName)
-        store.set(RegistrationData.Keys.lastName, forKey: lastName)
-        store.set(RegistrationData.Keys.email, forKey: email)
+        store.set(firstName, forKey: RegistrationData.Keys.firstName)
+        store.set(lastName, forKey: RegistrationData.Keys.lastName)
+        store.set(email, forKey: RegistrationData.Keys.email)
     }
 }
