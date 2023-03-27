@@ -35,11 +35,8 @@ struct RegistrationView: View {
                       placeholder: "Enter your email address",
                       input: $registrationData.email)
             
-            SubmitButton {
-                registrationData.save(to: UserDefaults.standard)
-                isLoggedIn = true
-            }
-            .disabled(!registrationData.isValid)
+            SubmitButton(registrationData: registrationData,
+                         isLoggedIn: $isLoggedIn)
         }
         .padding()
     }
@@ -69,11 +66,17 @@ fileprivate struct FormInput: View {
 }
 
 fileprivate struct SubmitButton: View {
-    let action: () -> Void
+    let registrationData: RegistrationData
+    
+    @Binding var isLoggedIn: Bool
     
     var body: some View {
-        Button("Submit", action: action)
-            .buttonStyle(.borderedProminent)
+        Button("Submit") {
+            registrationData.save(to: UserDefaults.standard)
+            isLoggedIn = true
+        }
+        .buttonStyle(.borderedProminent)
+        .disabled(!registrationData.isValid)
     }
 }
 
