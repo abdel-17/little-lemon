@@ -79,6 +79,8 @@ fileprivate struct SubmitButton: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        NavigationView {
+            RegistrationView()
+        }
     }
 }
