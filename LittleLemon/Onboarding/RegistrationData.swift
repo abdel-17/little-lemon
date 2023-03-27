@@ -14,6 +14,12 @@ struct RegistrationData {
     
     var email = ""
     
+    var isValid: Bool {
+        !firstName.isEmpty &&
+        !lastName.isEmpty &&
+        !email.isEmpty  // Email validation could be better
+    }
+    
     private struct Keys {
         static let firstName = "firstName"
         

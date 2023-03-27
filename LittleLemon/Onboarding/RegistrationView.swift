@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    @State var registrationData = RegistrationData()
+    @State private var registrationData = RegistrationData()
+    
+    @State private var isLoggedIn = false
     
     var body: some View {
         VStack(spacing: 24) {
+            // This is deprecated. Ideally, I'd use a NavigationStack
+            // instead of a NavigationView, but I'm not gonna bother
+            // right now.
+            NavigationLink(isActive: $isLoggedIn) {
+                HomeView()
+            } label: {
+                EmptyView()
+            }
+            
             FormInput(label: "First Name*",
                       placeholder: "Enter your first name",
                       input: $registrationData.firstName)
@@ -22,9 +33,13 @@ struct RegistrationView: View {
             
             FormInput(label: "Email*",
                       placeholder: "Enter your email address",
-                      input: $registrationData.lastName)
+                      input: $registrationData.email)
             
-            SubmitButton(registrationData: registrationData)
+            SubmitButton {
+                registrationData.save(to: UserDefaults.standard)
+                isLoggedIn = true
+            }
+            .disabled(!registrationData.isValid)
         }
         .padding()
     }
@@ -54,13 +69,11 @@ fileprivate struct FormInput: View {
 }
 
 fileprivate struct SubmitButton: View {
-    let registrationData: RegistrationData
+    let action: () -> Void
     
     var body: some View {
-        Button("Submit") {
-            registrationData.save(to: UserDefaults.standard)
-        }
-        .buttonStyle(.borderedProminent)
+        Button("Submit", action: action)
+            .buttonStyle(.borderedProminent)
     }
 }
 
