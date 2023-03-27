@@ -11,9 +11,8 @@ import CoreData
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            if let registrationData = RegistrationData.load(from: UserDefaults.standard) {
-                // Placeholder until the main view is implemented
-                EmptyView()
+            if RegistrationData.load(from: UserDefaults.standard) != nil {
+                HomeView()
             } else {
                 RegistrationView()
             }
