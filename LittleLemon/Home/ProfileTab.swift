@@ -13,21 +13,22 @@ struct ProfileTab: View {
     let registrationData: RegistrationData
     
     var body: some View {
-        VStack(spacing: 24) {
-            Text("Personal information")
+        VStack(spacing: 16) {
+            Text("Personal Information")
+                .font(.title)
+                .bold()
             
             Image("profile-image-placeholder")
                 .resizable()
                 .frame(maxWidth: 150, maxHeight: 150)
                 .clipShape(Circle())
             
-            VStack(alignment: .leading) {
-                Text("First name: \(registrationData.firstName)")
+            TitledText(title: "Name",
+                       description: "\(registrationData.firstName) \(registrationData.lastName)")
                 
-                Text("Last name: \(registrationData.lastName)")
-                
-                Text("Email address: \(registrationData.email)")
-            }
+            TitledText(title: "Email address",
+                       description: registrationData.email)
+            
             
             Button("Logout") {
                 RegistrationData.delete(from: UserDefaults.standard)
@@ -35,6 +36,26 @@ struct ProfileTab: View {
                 presentationMode.wrappedValue.dismiss()
             }
             .buttonStyle(.borderedProminent)
+            .padding(.top)
+        }
+        .padding()
+    }
+}
+
+fileprivate struct TitledText: View {
+    let title: String
+    
+    let description: String
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.headline)
+                
+                Text(description)
+            }
+            Spacer()
         }
     }
 }
