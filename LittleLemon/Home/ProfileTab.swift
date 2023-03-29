@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ProfileTab: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     let registrationData: RegistrationData
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
             Text("Personal Information")
                 .font(.title)
                 .bold()
@@ -29,14 +29,8 @@ struct ProfileTab: View {
             TitledText(title: "Email address",
                        description: registrationData.email)
             
-            
-            Button("Logout") {
-                RegistrationData.delete(from: UserDefaults.standard)
-                // Navigate back to the login screen.
-                presentationMode.wrappedValue.dismiss()
-            }
-            .buttonStyle(.borderedProminent)
-            .padding(.top)
+            LogoutButton(dismiss: dismiss)
+                .padding(.top)
         }
         .padding()
     }
@@ -57,6 +51,22 @@ fileprivate struct TitledText: View {
             }
             Spacer()
         }
+    }
+}
+
+fileprivate struct LogoutButton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    let dismiss: DismissAction
+    
+    var body: some View {
+        Button("Logout") {
+            RegistrationData.delete(from: UserDefaults.standard)
+            // Navigate back to the login screen.
+            dismiss()
+        }
+        .foregroundColor(colorScheme == .dark ? .black : .white)
+        .buttonStyle(.borderedProminent)
     }
 }
 

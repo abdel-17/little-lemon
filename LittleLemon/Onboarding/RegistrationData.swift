@@ -39,6 +39,7 @@ struct RegistrationData {
         store.set(firstName, forKey: RegistrationData.Keys.firstName)
         store.set(lastName, forKey: RegistrationData.Keys.lastName)
         store.set(email, forKey: RegistrationData.Keys.email)
+        debugPrint("Saved registration data to \(store)")
     }
     
     static func load(from store: UserDefaults) -> RegistrationData? {
@@ -47,8 +48,10 @@ struct RegistrationData {
             let lastName = store.string(forKey: Keys.lastName),
             let email = store.string(forKey: Keys.email)
         else {
+            debugPrint("No registration data found in \(store)")
             return nil
         }
+        debugPrint("Loading registration data from \(store)")
         return RegistrationData(firstName: firstName,
                                 lastName: lastName,
                                 email: email)
@@ -58,5 +61,6 @@ struct RegistrationData {
         store.set(nil, forKey: RegistrationData.Keys.firstName)
         store.set(nil, forKey: RegistrationData.Keys.lastName)
         store.set(nil, forKey: RegistrationData.Keys.email)
+        debugPrint("Deleted registration data from \(store)")
     }
 }

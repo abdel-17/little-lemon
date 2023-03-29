@@ -13,7 +13,7 @@ struct RegistrationView: View {
     @State private var isLoggedIn = false
     
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 16) {
             // This is deprecated. Ideally, I'd use a NavigationStack
             // instead of a NavigationView, but I'm not gonna bother
             // right now.
@@ -74,6 +74,8 @@ fileprivate struct FormInput: View {
 }
 
 fileprivate struct SubmitButton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let registrationData: RegistrationData
     
     @Binding var isLoggedIn: Bool
@@ -83,6 +85,7 @@ fileprivate struct SubmitButton: View {
             registrationData.save(to: UserDefaults.standard)
             isLoggedIn = true
         }
+        .foregroundColor(colorScheme == .dark ? .black : .white)
         .buttonStyle(.borderedProminent)
         .disabled(!registrationData.isValid)
     }
