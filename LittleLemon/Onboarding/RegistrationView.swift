@@ -34,9 +34,13 @@ struct RegistrationView: View {
             FormInput(label: "Email address*",
                       placeholder: "Enter your email address",
                       input: $registrationData.email)
+            .keyboardType(.emailAddress)
             
             SubmitButton(registrationData: registrationData,
                          isLoggedIn: $isLoggedIn)
+        }
+        .onAppear {
+            isLoggedIn = RegistrationData.load(from: UserDefaults.standard) != nil
         }
         .padding()
     }

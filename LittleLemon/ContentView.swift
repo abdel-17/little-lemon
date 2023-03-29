@@ -10,11 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            if let registrationData = RegistrationData.load(from: UserDefaults.standard) {
-                HomeView(registrationData: registrationData)
-            } else {
-                RegistrationView()
-            }
+            RegistrationView()
         }
     }
 }
