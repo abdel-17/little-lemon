@@ -49,6 +49,8 @@ fileprivate struct FormInput: View {
     
     @Binding var input: String
     
+    @FocusState private var focused
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
@@ -59,8 +61,10 @@ fileprivate struct FormInput: View {
                 .padding(.horizontal, 16)
                 .background(
                     Capsule()
-                        .stroke(.black, lineWidth: 2)
+                        .stroke(focused ? Color.accentColor : Color.secondary,
+                                lineWidth: 2)
                 )
+                .focused($focused)
         }
     }
 }
