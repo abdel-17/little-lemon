@@ -40,7 +40,10 @@ struct RegistrationView: View {
                          isLoggedIn: $isLoggedIn)
         }
         .onAppear {
-            isLoggedIn = RegistrationData.load(from: UserDefaults.standard) != nil
+            if let storedRegistration = RegistrationData.load(from: UserDefaults.standard) {
+                registrationData = storedRegistration
+                isLoggedIn = true
+            }
         }
         .padding()
     }
