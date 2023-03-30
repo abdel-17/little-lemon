@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    let registrationData: RegistrationData
+    @EnvironmentObject private var loginViewModel: LoginViewModel
     
     var body: some View {
         TabView {
@@ -17,19 +17,24 @@ struct HomeView: View {
                     Label("Menu", systemImage: "list.dash")
                 }
             
-            ProfileTab(registrationData: registrationData)
+            ProfileTab()
                 .tabItem {
                     Label("Profile", systemImage: "square.and.pencil")
                 }
         }
-        // Hide the back button to prevent the user from going
-        // back to the registration screen.
-        .navigationBarBackButtonHidden(true)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
+    static var viewModel: LoginViewModel {
+        let viewModel = LoginViewModel()
+        viewModel.firstName = "Ahmed"
+        viewModel.lastName = "Mohamed"
+        viewModel.email = "ahmedmohamed@gmail.com"
+        return viewModel
+    }
     static var previews: some View {
-        HomeView(registrationData: .fake)
+        HomeView()
+            .environmentObject(viewModel)
     }
 }

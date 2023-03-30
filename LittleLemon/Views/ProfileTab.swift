@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ProfileTab: View {
-    @Environment(\.dismiss) var dismiss
-    
-    let registrationData: RegistrationData
+    @EnvironmentObject private var loginViewModel: LoginViewModel
     
     var body: some View {
         VStack(spacing: 24) {
@@ -24,12 +22,15 @@ struct ProfileTab: View {
                 .clipShape(Circle())
             
             TitledText(title: "Name",
-                       description: registrationData.fullName)
+                       description: loginViewModel.fullName)
                 
             TitledText(title: "Email address",
-                       description: registrationData.email)
+                       description: loginViewModel.email)
             
-            LogoutButton(dismiss: dismiss)
+            Button("Logout") {
+                loginViewModel.logout()
+            }
+            .lemonStyle()
         }
         .padding()
     }
@@ -53,22 +54,9 @@ fileprivate struct TitledText: View {
     }
 }
 
-fileprivate struct LogoutButton: View {
-    let dismiss: DismissAction
-    
-    var body: some View {
-        Button("Logout") {
-            debugPrint("Logging out")
-            RegistrationData.delete(from: UserDefaults.standard)
-            // Navigate back to the login screen.
-            dismiss()
-        }
-        .lemonStyle()
-    }
-}
-
 struct ProfileTab_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileTab(registrationData: .fake)
+        ProfileTab()
+            .environmentObject(LoginViewModel())
     }
 }
