@@ -24,13 +24,12 @@ struct ProfileTab: View {
                 .clipShape(Circle())
             
             TitledText(title: "Name",
-                       description: "\(registrationData.firstName) \(registrationData.lastName)")
+                       description: registrationData.fullName)
                 
             TitledText(title: "Email address",
                        description: registrationData.email)
             
             LogoutButton(dismiss: dismiss)
-                .padding(.top)
         }
         .padding()
     }
@@ -55,8 +54,6 @@ fileprivate struct TitledText: View {
 }
 
 fileprivate struct LogoutButton: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     let dismiss: DismissAction
     
     var body: some View {
@@ -66,8 +63,7 @@ fileprivate struct LogoutButton: View {
             // Navigate back to the login screen.
             dismiss()
         }
-        .foregroundColor(colorScheme == .dark ? .black : .white)
-        .buttonStyle(.borderedProminent)
+        .lemonStyle()
     }
 }
 

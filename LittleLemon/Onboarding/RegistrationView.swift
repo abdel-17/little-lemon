@@ -66,21 +66,14 @@ fileprivate struct FormInput: View {
                 .padding(.horizontal)
             
             TextField(placeholder, text: $input)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 16)
-                .background(
-                    Capsule()
-                        .stroke(focused ? Color.accentColor : Color.secondary,
-                                lineWidth: 2)
-                )
+                .lemonStyle()
                 .focused($focused)
         }
     }
 }
 
+
 fileprivate struct SubmitButton: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     let registrationData: RegistrationData
     
     @Binding var isLoggedIn: Bool
@@ -90,8 +83,7 @@ fileprivate struct SubmitButton: View {
             registrationData.save(to: UserDefaults.standard)
             isLoggedIn = true
         }
-        .foregroundColor(colorScheme == .dark ? .black : .white)
-        .buttonStyle(.borderedProminent)
+        .lemonStyle()
         .disabled(!registrationData.isValid)
     }
 }

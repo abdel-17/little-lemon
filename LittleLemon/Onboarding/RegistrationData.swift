@@ -20,6 +20,10 @@ struct RegistrationData {
         !email.isEmpty  // Email validation could be better
     }
     
+    var fullName: String {
+        "\(firstName) \(lastName)"
+    }
+    
     /// Fake registration data.
     ///
     /// Use this mainly for previews.

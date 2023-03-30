@@ -52,6 +52,7 @@ extension Dish {
         debugPrint("Saved menu to CoreData")
     }
 
+    /// Deletes all dishes from the given context.
     static func deleteAll(context: NSManagedObjectContext) throws {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: Dish.fetchRequest())
         deleteRequest.resultType = .resultTypeObjectIDs
