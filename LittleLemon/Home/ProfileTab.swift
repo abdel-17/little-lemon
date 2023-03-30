@@ -61,6 +61,7 @@ fileprivate struct LogoutButton: View {
     
     var body: some View {
         Button("Logout") {
+            debugPrint("Logging out")
             RegistrationData.delete(from: UserDefaults.standard)
             // Navigate back to the login screen.
             dismiss()

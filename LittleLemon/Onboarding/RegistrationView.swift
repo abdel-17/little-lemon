@@ -35,6 +35,8 @@ struct RegistrationView: View {
                       placeholder: "Enter your email address",
                       input: $registrationData.email)
             .keyboardType(.emailAddress)
+            .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
             
             SubmitButton(registrationData: registrationData,
                          isLoggedIn: $isLoggedIn)
