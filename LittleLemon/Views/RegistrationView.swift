@@ -57,8 +57,7 @@ fileprivate struct FormInput: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            RegistrationView()
-        }
+        RegistrationView()
+            .environmentObject(LoginViewModel())
     }
 }
