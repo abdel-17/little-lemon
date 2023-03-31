@@ -9,43 +9,45 @@ import SwiftUI
 
 struct MenuTab: View {
     @Environment(\.managedObjectContext) var viewContext
-    
+
     @State private var query = ""
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Little Lemon")
-                .font(.largeTitle)
-                .bold()
+            Group {
+                Text("Little Lemon")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.top)
 
-            Text("Chicago")
-                .font(.title)
-                .fontWeight(.semibold)
+                Text("Chicago")
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .padding(.bottom, 4)
 
-            Text("Little Lemon is a charming neighborhood bistro thatserves simple food and classic cocktails in a lively but casual environment. The restaurant features a locally-sourced menu with daily specials.")
-                .padding(.top)
-            
-            TextField("Search for a dish", text: $query)
-                .lemonStyle()
-            
-            List {
-                MenuView(sortDescriptors: sortDescriptors, predicate: predicate)
+                Text("Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. The restaurant features a locally-sourced menu with daily specials.")
+                
+                TextField("Search for a dish", text: $query)
+                    .lemonStyle()
+                    .padding(.top)
             }
-            .listStyle(.plain)
+            .padding(.horizontal)
+
+            MenuView(sortDescriptors: sortDescriptors, predicate: predicate)
         }
+
         .task {
             await loadDishes()
         }
-        .padding()
     }
-    
+
     private var sortDescriptors: [NSSortDescriptor] {
         [NSSortDescriptor(
             key: "title",
             ascending: true,
             selector: #selector(NSString.localizedCaseInsensitiveCompare))]
     }
-    
+
     private var predicate: NSPredicate {
         guard !query.isEmpty else {
             return NSPredicate(value: true)

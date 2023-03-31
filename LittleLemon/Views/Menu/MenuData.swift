@@ -37,6 +37,20 @@ struct MenuItem: Codable {
 }
 
 extension Dish {
+    var formattedPrice: String {
+        String(format: "%.2f $", price)
+    }
+    
+    static let preview = {
+        let dish = Dish(context: PersistenceController.preview.container.viewContext)
+        dish.title = "Greek Salad"
+        dish.dishDescription = "The famous greek salad of crispy lettuce, peppers, olives, our Chicago."
+        dish.price = 10.0
+        dish.imageUrl = URL(string: "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/greekSalad.jpg?raw=true")
+        dish.category = "starters"
+        return dish
+    }()
+    
     /// Saves the menu items as dishes to the given context.
     static func create(from menu: Menu, context: NSManagedObjectContext) throws {
         menu.items.forEach { item in
@@ -44,7 +58,7 @@ extension Dish {
             dish.title = item.title
             dish.dishDescription = item.description
             dish.price = Float(item.price) ?? .nan
-            dish.image = item.image
+            dish.imageUrl = URL(string: item.image)
             dish.category = item.category
         }
 
