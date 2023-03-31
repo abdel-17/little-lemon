@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E6955D629D61C9000F71AF7 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6955D529D61C9000F71AF7 /* MenuView.swift */; };
+		9E6955D629D61C9000F71AF7 /* DishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6955D529D61C9000F71AF7 /* DishList.swift */; };
 		9E6955D829D6248500F71AF7 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6955D729D6248500F71AF7 /* Styles.swift */; };
 		9E6955DA29D638F700F71AF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6955D929D638F700F71AF7 /* LoginViewModel.swift */; };
 		9E6955DC29D65ED500F71AF7 /* DishDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6955DB29D65ED500F71AF7 /* DishDetail.swift */; };
@@ -47,7 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9E6955D529D61C9000F71AF7 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		9E6955D529D61C9000F71AF7 /* DishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishList.swift; sourceTree = "<group>"; };
 		9E6955D729D6248500F71AF7 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9E6955D929D638F700F71AF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9E6955DB29D65ED500F71AF7 /* DishDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetail.swift; sourceTree = "<group>"; };
@@ -102,9 +102,9 @@
 			children = (
 				9E9219C929D5EAD600CA7857 /* MenuTab.swift */,
 				9E9219CB29D5EB0400CA7857 /* MenuData.swift */,
-				9E6955D529D61C9000F71AF7 /* MenuView.swift */,
-				9E6955DB29D65ED500F71AF7 /* DishDetail.swift */,
+				9E6955D529D61C9000F71AF7 /* DishList.swift */,
 				9E6955DD29D6606600F71AF7 /* DishListItem.swift */,
+				9E6955DB29D65ED500F71AF7 /* DishDetail.swift */,
 				9E6955DF29D6967500F71AF7 /* NetworkImage.swift */,
 			);
 			path = Menu;
@@ -314,7 +314,7 @@
 			files = (
 				9ECA2C1329D071E400B698D9 /* Persistence.swift in Sources */,
 				9E6955E029D6967600F71AF7 /* NetworkImage.swift in Sources */,
-				9E6955D629D61C9000F71AF7 /* MenuView.swift in Sources */,
+				9E6955D629D61C9000F71AF7 /* DishList.swift in Sources */,
 				9ECFACE929D10FB600EAB70A /* HomeView.swift in Sources */,
 				9E6955D829D6248500F71AF7 /* Styles.swift in Sources */,
 				9E9219CC29D5EB0400CA7857 /* MenuData.swift in Sources */,

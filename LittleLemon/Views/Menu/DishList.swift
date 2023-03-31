@@ -1,5 +1,5 @@
 //
-//  MenuView.swift
+//  DishList.swift
 //  LittleLemon
 //
 //  Created by Abdel on 30/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuView: View {
+struct DishList: View {
     @FetchRequest private var dishes: FetchedResults<Dish>
     
     init(sortDescriptors: [NSSortDescriptor] = [], predicate: NSPredicate? = nil) {
@@ -28,8 +28,8 @@ struct MenuView: View {
     }
 }
 
-struct MenuView_Previews: PreviewProvider {
+struct DishList_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        DishList()
     }
 }

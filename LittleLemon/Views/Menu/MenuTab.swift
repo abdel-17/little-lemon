@@ -23,7 +23,7 @@ struct MenuTab: View {
                 Text("Chicago")
                     .font(.title)
                     .fontWeight(.medium)
-                    .padding(.bottom, 4)
+                    .padding(.bottom)
 
                 Text("Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. The restaurant features a locally-sourced menu with daily specials.")
                 
@@ -33,9 +33,8 @@ struct MenuTab: View {
             }
             .padding(.horizontal)
 
-            MenuView(sortDescriptors: sortDescriptors, predicate: predicate)
+            DishList(sortDescriptors: sortDescriptors, predicate: predicate)
         }
-
         .task {
             await loadDishes()
         }
