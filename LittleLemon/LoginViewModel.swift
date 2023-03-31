@@ -46,8 +46,10 @@ class LoginViewModel: ObservableObject {
     var isValid: Bool {
         !firstName.isEmpty &&
         !lastName.isEmpty &&
-        !email.isEmpty  // Email validation could be better
+        email.wholeMatch(of: emailRegex) != nil
     }
+    
+    private let emailRegex = try! Regex("^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$")
     
     /// Logs in using the current login state.
     ///
