@@ -36,8 +36,9 @@ struct MenuTab: View {
                         .foregroundColor(.white)
                 )
                 .lemonStyle(blurredStrokeColor: .white)
+                .padding(.bottom)
             }
-            .padding()
+            .padding(.horizontal)
             .background(Color("olive"))
 
             DishList(sortDescriptors: sortDescriptors, predicate: predicate)

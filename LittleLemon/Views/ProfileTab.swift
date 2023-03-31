@@ -32,7 +32,7 @@ struct ProfileTab: View {
             }
             .lemonStyle()
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 
