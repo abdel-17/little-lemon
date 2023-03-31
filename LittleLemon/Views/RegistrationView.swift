@@ -11,7 +11,15 @@ struct RegistrationView: View {
     @EnvironmentObject private var loginViewModel: LoginViewModel
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
+            HStack {
+                Text("Create Account")
+                    .font(.title)
+                    .bold()
+                
+                Spacer()
+            }
+            
             FormInput(label: "First name*",
                       placeholder: "Enter your first name",
                       input: $loginViewModel.firstName)
@@ -31,6 +39,7 @@ struct RegistrationView: View {
                 loginViewModel.login()
             }
             .lemonStyle()
+            .padding(.top)
             .disabled(!loginViewModel.isValid)
         }
         .padding()

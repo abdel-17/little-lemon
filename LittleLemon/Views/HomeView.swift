@@ -33,6 +33,7 @@ struct HomeView_Previews: PreviewProvider {
         viewModel.email = "ahmedmohamed@gmail.com"
         return viewModel
     }
+    
     static var previews: some View {
         HomeView()
             .environmentObject(viewModel)

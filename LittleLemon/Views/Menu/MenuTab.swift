@@ -13,25 +13,32 @@ struct MenuTab: View {
     @State private var query = ""
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Group {
+        VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text("Little Lemon")
                     .font(.largeTitle)
                     .bold()
-                    .padding(.top)
+                    .foregroundColor(.accentColor)
 
                 Text("Chicago")
                     .font(.title)
                     .fontWeight(.medium)
-                    .padding(.bottom)
+                    .foregroundColor(.white)
 
                 Text("Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. The restaurant features a locally-sourced menu with daily specials.")
+                    .padding(.vertical)
+                    .foregroundColor(.white)
                 
-                TextField("Search for a dish", text: $query)
-                    .lemonStyle()
-                    .padding(.top)
+                TextField(
+                    "Search",
+                    text: $query,
+                    prompt: Text("Search for a dish")
+                        .foregroundColor(.white)
+                )
+                .lemonStyle(blurredStrokeColor: .white)
             }
-            .padding(.horizontal)
+            .padding()
+            .background(Color("olive"))
 
             DishList(sortDescriptors: sortDescriptors, predicate: predicate)
         }

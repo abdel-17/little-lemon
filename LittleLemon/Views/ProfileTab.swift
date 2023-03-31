@@ -21,7 +21,7 @@ struct ProfileTab: View {
                 .frame(maxWidth: 150, maxHeight: 150)
                 .clipShape(Circle())
             
-            TitledText(title: "Name",
+            TitledText(title: "Full Name",
                        description: loginViewModel.fullName)
                 
             TitledText(title: "Email address",
