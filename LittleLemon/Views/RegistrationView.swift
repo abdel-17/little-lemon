@@ -20,20 +20,23 @@ struct RegistrationView: View {
                 Spacer()
             }
             
-            FormInput(label: "First name*",
-                      placeholder: "Enter your first name",
-                      input: $loginViewModel.firstName)
+            LabeledTextField(
+                label: "First name*",
+                placeholder: "Enter your first name",
+                text: $loginViewModel.firstName)
 
-            FormInput(label: "Last name*",
-                      placeholder: "Enter your last name",
-                      input: $loginViewModel.lastName)
+            LabeledTextField(
+                label: "Last name*",
+                placeholder: "Enter your last name",
+                text: $loginViewModel.lastName)
 
-            FormInput(label: "Email address*",
-                      placeholder: "Enter your email address",
-                      input: $loginViewModel.email)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
+            LabeledTextField(
+                label: "Email address*",
+                placeholder: "Enter your email address",
+                text: $loginViewModel.email)
+            .keyboardType(.emailAddress)
+            .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
 
             Button("Submit") {
                 loginViewModel.login()
@@ -43,24 +46,6 @@ struct RegistrationView: View {
             .disabled(!loginViewModel.isValid)
         }
         .padding()
-    }
-}
-
-fileprivate struct FormInput: View {
-    let label: String
-
-    let placeholder: String
-
-    @Binding var input: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(label)
-                .padding(.horizontal)
-
-            TextField(placeholder, text: $input)
-                .lemonStyle()
-        }
     }
 }
 

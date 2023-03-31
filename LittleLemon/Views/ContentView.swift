@@ -22,13 +22,6 @@ struct ContentView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.5), value: loginViewModel.isLoggedIn)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                }
-            }
             
             // This is needed for the navigation transition to work.
             EmptyView()
