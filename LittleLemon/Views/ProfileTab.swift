@@ -30,7 +30,7 @@ struct ProfileTab: View {
                 
                 LabeledTextField(
                     label: "Last name",
-                    placeholder: "Enter your first last",
+                    placeholder: "Enter your last name",
                     text: $loginData.lastName)
                 .padding(.vertical)
                 .focused($focused)
