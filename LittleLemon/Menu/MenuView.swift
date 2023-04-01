@@ -40,25 +40,23 @@ struct MenuView: View {
                 }
                 .padding()
                 .background(Color("olive"))
-                
+            
                 Text("Order for Delivery!")
                     .font(.title3)
                     .bold()
                     .padding()
                 
-                HStack(spacing: 0) {
-                    Spacer()
-                    
-                    ForEach(DishCategory.allCases) { category in
-                        DishCategoryView(viewModel: viewModel,
-                                         category: category)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(DishCategory.allCases) { category in
+                            DishCategoryView(viewModel: viewModel,
+                                             category: category)
+                        }
                     }
-                    
-                    Spacer()
+                    .padding([.horizontal, .bottom])
                 }
                 
                 Divider()
-                    .padding(.top)
                 
                 DishList(sortDescriptors: viewModel.sortDescriptors,
                          predicate: viewModel.predicate)
@@ -90,15 +88,33 @@ private struct DishCategoryView: View {
             }
         }
         .bold()
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.roundedRectangle)
-        .tint(.olive.opacity(isSelected ? 1 : 0))
-        .foregroundColor(isSelected ? .white : .olive)
-        .padding(.horizontal, 4)
+        .buttonStyle(
+            ChipButtonStyle(
+                color: .olive,
+                isSelected: viewModel.selectedCategories.contains(category))
+        )
     }
+}
+
+private struct ChipButtonStyle: ButtonStyle {
+    let color: Color
     
-    var isSelected: Bool {
-        viewModel.selectedCategories.contains(category)
+    let isSelected: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .frame(height: 32)
+            .foregroundColor(isSelected ? .white : color)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(color, lineWidth: 2)
+            )
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(color.opacity(isSelected ? 1 : 0))
+            )
     }
 }
 
