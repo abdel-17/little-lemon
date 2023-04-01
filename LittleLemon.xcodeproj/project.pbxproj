@@ -143,10 +143,11 @@
 		9ECA2C0829D071E200B698D9 /* LittleLemon */ = {
 			isa = PBXGroup;
 			children = (
+				9EFE679329D7BCD5007ED97E /* Onboarding */,
+				9E9219C829D5EABD00CA7857 /* Menu */,
+				9E67C62429D787740026A282 /* Common */,
 				9ECFACE729D10FAA00EAB70A /* Views */,
 				9ECA2C0929D071E200B698D9 /* LittleLemonApp.swift */,
-				9E6955D929D638F700F71AF7 /* LoginViewModel.swift */,
-				9E6955D729D6248500F71AF7 /* Styles.swift */,
 				9ECA2C0D29D071E400B698D9 /* Assets.xcassets */,
 				9ECA2C1229D071E400B698D9 /* Persistence.swift */,
 				9ECA2C1429D071E400B698D9 /* LittleLemon.xcdatamodeld */,
@@ -183,14 +184,21 @@
 		9ECFACE729D10FAA00EAB70A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9E67C62429D787740026A282 /* Common */,
 				9ECA2C0B29D071E200B698D9 /* ContentView.swift */,
-				9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */,
 				9ECFACE829D10FB600EAB70A /* HomeView.swift */,
 				9ECFACEC29D12F8E00EAB70A /* ProfileTab.swift */,
-				9E9219C829D5EABD00CA7857 /* Menu */,
+				9E6955D729D6248500F71AF7 /* Styles.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9EFE679329D7BCD5007ED97E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */,
+				9E6955D929D638F700F71AF7 /* LoginViewModel.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
