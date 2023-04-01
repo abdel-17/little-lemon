@@ -11,21 +11,16 @@ struct ContentView: View {
     @StateObject private var loginViewModel = LoginViewModel()
     
     var body: some View {
-        NavigationView {
-            Group {
-                if loginViewModel.isLoggedIn {
-                    HomeView()
-                        .transition(.move(edge: .trailing))
-                } else {
-                    RegistrationView()
-                        .transition(.move(edge: .leading))
-                }
+        Group {
+            if loginViewModel.isLoggedIn {
+                HomeView()
+                    .transition(.move(edge: .trailing))
+            } else {
+                RegistrationView()
+                    .transition(.move(edge: .leading))
             }
-            .animation(.easeInOut(duration: 0.5), value: loginViewModel.isLoggedIn)
-            
-            // This is needed for the navigation transition to work.
-            EmptyView()
         }
+        .animation(.easeInOut(duration: 0.5), value: loginViewModel.isLoggedIn)
         .environmentObject(loginViewModel)
     }
 }

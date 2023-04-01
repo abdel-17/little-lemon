@@ -30,6 +30,9 @@ struct DishList: View {
 
 struct DishList_Previews: PreviewProvider {
     static var previews: some View {
-        DishList()
+        NavigationView {
+            DishList()
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
