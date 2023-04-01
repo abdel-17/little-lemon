@@ -106,6 +106,7 @@
 			children = (
 				9E6955DF29D6967500F71AF7 /* NetworkImage.swift */,
 				9E67C62529D787910026A282 /* LabeledTextField.swift */,
+				9E6955D729D6248500F71AF7 /* Styles.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -189,7 +190,6 @@
 				9ECA2C0B29D071E200B698D9 /* ContentView.swift */,
 				9ECFACE829D10FB600EAB70A /* HomeView.swift */,
 				9ECFACEC29D12F8E00EAB70A /* ProfileView.swift */,
-				9E6955D729D6248500F71AF7 /* Styles.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

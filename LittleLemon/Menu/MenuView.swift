@@ -41,23 +41,24 @@ struct MenuView: View {
                 .padding()
                 .background(Color("olive"))
                 
-                VStack(alignment: .leading) {
-                    Text("Order for Delivery!")
-                        .font(.title3)
-                        .bold()
+                Text("Order for Delivery!")
+                    .font(.title3)
+                    .bold()
+                    .padding()
+                
+                HStack(spacing: 0) {
+                    Spacer()
                     
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(DishCategory.allCases) { category in
-                                DishCategoryView(viewModel: viewModel,
-                                                 category: category)
-                            }
-                        }
+                    ForEach(DishCategory.allCases) { category in
+                        DishCategoryView(viewModel: viewModel,
+                                         category: category)
                     }
+                    
+                    Spacer()
                 }
-                .padding()
                 
                 Divider()
+                    .padding(.top)
                 
                 DishList(sortDescriptors: viewModel.sortDescriptors,
                          predicate: viewModel.predicate)
@@ -76,21 +77,24 @@ enum DishCategory: String, CaseIterable, Identifiable {
 }
 
 private struct DishCategoryView: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
     @ObservedObject var viewModel: MenuViewModel
     
     let category: DishCategory
     
     var body: some View {
         Button(category.rawValue.capitalized) {
-            withAnimation(.easeOut(duration: 0.25)) {
+            withAnimation(.easeInOut(duration: 0.25)) {
                 viewModel.toggle(category: category)
             }
         }
         .bold()
-        .tint(isSelected ? .olive : .secondary.opacity(0.35))
-        .foregroundColor(isSelected ? .white : .primary)
         .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
+        .buttonBorderShape(.roundedRectangle)
+        .tint(.olive.opacity(isSelected ? 1 : 0))
+        .foregroundColor(isSelected ? .white : .olive)
+        .padding(.horizontal, 4)
     }
     
     var isSelected: Bool {
