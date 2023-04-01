@@ -10,17 +10,13 @@ import SwiftUI
 struct ProfileTab: View {
     @EnvironmentObject private var loginViewModel: LoginViewModel
     
+    @FocusState private var focused
+    
+    @State private var loginData = LoginData()
+    
     var body: some View {
         NavigationView {
-            VStack(spacing: 24) {
-                HStack {
-                    Text("Profile")
-                        .font(.title)
-                        .bold()
-                    
-                    Spacer()
-                }
-                
+            VStack {
                 Image("profile-image-placeholder")
                     .resizable()
                     .frame(width: 100, height: 100)
@@ -29,31 +25,38 @@ struct ProfileTab: View {
                 LabeledTextField(
                     label: "First name",
                     placeholder: "Enter your first name",
-                    text: $loginViewModel.firstName)
+                    text: $loginData.firstName)
+                .focused($focused)
                 
                 LabeledTextField(
                     label: "Last name",
                     placeholder: "Enter your first last",
-                    text: $loginViewModel.lastName)
+                    text: $loginData.lastName)
+                .padding(.vertical)
+                .focused($focused)
                 
                 LabeledTextField(
                     label: "Email address",
                     placeholder: "Enter your email address",
-                    text: $loginViewModel.email)
+                    text: $loginData.email)
+                .focused($focused)
+                .emailTextField()
                 
                 HStack(spacing: 32) {
                     Button("Cancel") {
-                        loginViewModel.resetChanges()
+                        onCancel()
                     }
-                    .foregroundColor(.olive)
+                    .foregroundColor(hasChanges ? .olive : nil)
+                    .disabled(!hasChanges)
                     
                     Button("Save") {
-                        loginViewModel.saveChanges()
+                        onSave()
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.olive)
-                    .disabled(!loginViewModel.isValid)
+                    .disabled(!hasChanges || !loginData.isValid)
                 }
+                .padding(.top, 24)
                 
                 Spacer()
             }
@@ -67,13 +70,27 @@ struct ProfileTab: View {
                     }
                 }
             }
-            .onDisappear {
-                // Cancel automatically if the user leaves without saving.
-                if loginViewModel.hasUnsavedChanges {
-                    loginViewModel.resetChanges()
-                }
+            .navigationTitle("Profile")
+            .onAppear {
+                loginData = loginViewModel.loginData
             }
         }
+    }
+    
+    /// Returns `true` if the user made any changes to the login data.
+    private var hasChanges: Bool {
+        loginData != loginViewModel.loginData
+    }
+    
+    private func onCancel() {
+        loginData = loginViewModel.loginData
+        focused = false
+    }
+    
+    private func onSave() {
+        loginViewModel.loginData = loginData
+        loginViewModel.saveChanges()
+        focused = false
     }
 }
 

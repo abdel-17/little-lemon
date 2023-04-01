@@ -23,27 +23,25 @@ struct RegistrationView: View {
             LabeledTextField(
                 label: "First name*",
                 placeholder: "Enter your first name",
-                text: $loginViewModel.firstName)
+                text: $loginViewModel.loginData.firstName)
 
             LabeledTextField(
                 label: "Last name*",
                 placeholder: "Enter your last name",
-                text: $loginViewModel.lastName)
+                text: $loginViewModel.loginData.lastName)
 
             LabeledTextField(
                 label: "Email address*",
                 placeholder: "Enter your email address",
-                text: $loginViewModel.email)
-            .keyboardType(.emailAddress)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
+                text: $loginViewModel.loginData.email)
+            .emailTextField()
 
             Button("Submit") {
                 loginViewModel.onLogin()
             }
             .lemonStyle()
             .padding(.top)
-            .disabled(!loginViewModel.isValid)
+            .disabled(!loginViewModel.loginData.isValid)
         }
         .padding()
     }

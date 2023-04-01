@@ -28,6 +28,7 @@
 		9ECFACE029D0DAB900EAB70A /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */; };
 		9ECFACE929D10FB600EAB70A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFACE829D10FB600EAB70A /* HomeView.swift */; };
 		9ECFACED29D12F8E00EAB70A /* ProfileTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFACEC29D12F8E00EAB70A /* ProfileTab.swift */; };
+		9EFE679529D7D1A5007ED97E /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE679429D7D1A5007ED97E /* LoginData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		9ECFACE829D10FB600EAB70A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9ECFACEC29D12F8E00EAB70A /* ProfileTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTab.swift; sourceTree = "<group>"; };
+		9EFE679429D7D1A5007ED97E /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				9ECFACDF29D0DAB900EAB70A /* RegistrationView.swift */,
+				9EFE679429D7D1A5007ED97E /* LoginData.swift */,
 				9E6955D929D638F700F71AF7 /* LoginViewModel.swift */,
 			);
 			path = Onboarding;
@@ -344,6 +347,7 @@
 				9E6955DA29D638F700F71AF7 /* LoginViewModel.swift in Sources */,
 				9ECFACED29D12F8E00EAB70A /* ProfileTab.swift in Sources */,
 				9E9219CA29D5EAD600CA7857 /* MenuTab.swift in Sources */,
+				9EFE679529D7D1A5007ED97E /* LoginData.swift in Sources */,
 				9E6955DC29D65ED500F71AF7 /* DishDetail.swift in Sources */,
 				9E6955DE29D6606600F71AF7 /* DishListItem.swift in Sources */,
 				9ECFACE029D0DAB900EAB70A /* RegistrationView.swift in Sources */,

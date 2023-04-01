@@ -28,9 +28,11 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var viewModel: LoginViewModel {
         let viewModel = LoginViewModel()
-        viewModel.firstName = "Ahmed"
-        viewModel.lastName = "Mohamed"
-        viewModel.email = "ahmedmohamed@gmail.com"
+        viewModel.loginData = LoginData(
+            firstName: "Ahmed",
+            lastName: "Mohamed",
+            email: "ahmedmohamed@gmail.com"
+        )
         return viewModel
     }
     

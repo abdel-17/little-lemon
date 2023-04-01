@@ -30,6 +30,21 @@ extension TextField {
     }
 }
 
+extension View {
+    /// Optimizes this view for email text input.
+    ///
+    /// Applies the following modifiers to this view:
+    /// 1) `keyboardType(.emailAddress)`
+    /// 2) `textInputAutocapitalization(.never)`
+    /// 3) `textInputAutocapitalization(.never)`
+    func emailTextField() -> some View {
+        self
+            .keyboardType(.emailAddress)
+            .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
+    }
+}
+
 private struct LemonButtonStyle: ViewModifier {
     @Environment(\.isEnabled) private var isEnabled
     
