@@ -12,12 +12,12 @@ struct HomeView: View {
     
     var body: some View {
         TabView {
-            MenuTab()
+            MenuView()
                 .tabItem {
                     Label("Menu", systemImage: "list.dash")
                 }
             
-            ProfileTab()
+            ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "square.and.pencil")
                 }
@@ -39,5 +39,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .environmentObject(viewModel)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

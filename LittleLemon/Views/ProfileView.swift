@@ -1,5 +1,5 @@
 //
-//  ProfileTab.swift
+//  ProfileView.swift
 //  LittleLemon
 //
 //  Created by Abdel on 27/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProfileTab: View {
+struct ProfileView: View {
     @EnvironmentObject private var loginViewModel: LoginViewModel
     
     @FocusState private var focused
@@ -96,7 +96,7 @@ struct ProfileTab: View {
 
 struct ProfileTab_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileTab()
+        ProfileView()
             .environmentObject(LoginViewModel())
     }
 }

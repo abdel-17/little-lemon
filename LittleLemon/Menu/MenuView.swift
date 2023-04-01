@@ -1,5 +1,5 @@
 //
-//  MenuTab.swift
+//  MenuView.swift
 //  LittleLemon
 //
 //  Created by Abdel on 27/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuTab: View {
+struct MenuView: View {
     @Environment(\.managedObjectContext) var viewContext
 
     @State private var query = ""
@@ -77,7 +77,7 @@ struct MenuTab: View {
 
 struct MenuTab_Previews: PreviewProvider {
     static var previews: some View {
-        MenuTab()
+        MenuView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
