@@ -36,7 +36,7 @@ extension View {
     /// Applies the following modifiers to this view:
     /// 1) `keyboardType(.emailAddress)`
     /// 2) `textInputAutocapitalization(.never)`
-    /// 3) `textInputAutocapitalization(.never)`
+    /// 3) `autocorrectionDisabled()`
     func emailTextField() -> some View {
         self
             .keyboardType(.emailAddress)
