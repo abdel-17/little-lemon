@@ -39,7 +39,7 @@ struct RegistrationView: View {
             .autocorrectionDisabled()
 
             Button("Submit") {
-                loginViewModel.login()
+                loginViewModel.onLogin()
             }
             .lemonStyle()
             .padding(.top)

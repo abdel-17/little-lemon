@@ -11,45 +11,68 @@ struct ProfileTab: View {
     @EnvironmentObject private var loginViewModel: LoginViewModel
     
     var body: some View {
-        VStack(spacing: 24) {
-            Text("Personal Information")
-                .font(.title)
-                .bold()
-            
-            Image("profile-image-placeholder")
-                .resizable()
-                .frame(maxWidth: 150, maxHeight: 150)
-                .clipShape(Circle())
-            
-            TitledText(title: "Full Name",
-                       description: loginViewModel.fullName)
+        NavigationView {
+            VStack(spacing: 24) {
+                HStack {
+                    Text("Profile")
+                        .font(.title)
+                        .bold()
+                    
+                    Spacer()
+                }
                 
-            TitledText(title: "Email address",
-                       description: loginViewModel.email)
-            
-            Button("Logout") {
-                loginViewModel.logout()
-            }
-            .lemonStyle()
-        }
-        .padding()
-    }
-}
-
-fileprivate struct TitledText: View {
-    let title: String
-    
-    let description: String
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
+                Image("profile-image-placeholder")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .clipShape(Circle())
                 
-                Text(description)
+                LabeledTextField(
+                    label: "First name",
+                    placeholder: "Enter your first name",
+                    text: $loginViewModel.firstName)
+                
+                LabeledTextField(
+                    label: "Last name",
+                    placeholder: "Enter your first last",
+                    text: $loginViewModel.lastName)
+                
+                LabeledTextField(
+                    label: "Email address",
+                    placeholder: "Enter your email address",
+                    text: $loginViewModel.email)
+                
+                HStack(spacing: 32) {
+                    Button("Cancel") {
+                        loginViewModel.resetChanges()
+                    }
+                    .foregroundColor(.olive)
+                    
+                    Button("Save") {
+                        loginViewModel.saveChanges()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.olive)
+                    .disabled(!loginViewModel.isValid)
+                }
+                
+                Spacer()
             }
-            Spacer()
+            .padding()
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        loginViewModel.onLogout()
+                    } label: {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                    }
+                }
+            }
+            .onDisappear {
+                // Cancel automatically if the user leaves without saving.
+                if loginViewModel.hasUnsavedChanges {
+                    loginViewModel.resetChanges()
+                }
+            }
         }
     }
 }

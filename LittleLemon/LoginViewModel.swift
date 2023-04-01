@@ -11,13 +11,27 @@ import Foundation
 class LoginViewModel: ObservableObject {
     let store: UserDefaults
     
-    @Published var firstName: String
+    @Published var firstName: String {
+        didSet {
+            hasUnsavedChanges = true
+        }
+    }
     
-    @Published var lastName: String
+    @Published var lastName: String {
+        didSet {
+            hasUnsavedChanges = true
+        }
+    }
     
-    @Published var email: String
+    @Published var email: String {
+        didSet {
+            hasUnsavedChanges = true
+        }
+    }
     
     @Published private(set) var isLoggedIn: Bool
+    
+    @Published private(set) var hasUnsavedChanges = false
     
     private struct Keys {
         static let firstName = "firstName"
@@ -37,11 +51,6 @@ class LoginViewModel: ObservableObject {
         self.isLoggedIn = store.bool(forKey: Keys.isLoggedIn)
     }
     
-    /// The full name retrieved from the current login state.
-    var fullName: String {
-        "\(firstName) \(lastName)"
-    }
-    
     /// Returns `true` if the current login state is valid.
     var isValid: Bool {
         !firstName.isEmpty &&
@@ -54,29 +63,41 @@ class LoginViewModel: ObservableObject {
     /// Logs in using the current login state.
     ///
     /// The data must be valid.
-    func login() {
+    func onLogin() {
         assert(isValid)
         isLoggedIn = true
-        syncStore()
+        saveChanges()
         debugPrint("Logged in")
     }
     
     /// Logs out, resetting the current login state.
-    func logout() {
+    func onLogout() {
         assert(isLoggedIn)
         firstName = ""
         lastName = ""
         email = ""
         isLoggedIn = false
-        syncStore()
+        saveChanges()
         debugPrint("Logged out")
     }
     
-    /// Syncs the data stored in `store` with the current state.
-    private func syncStore() {
+    /// Sets the data in this view model to the data in `store`.
+    func resetChanges() {
+        firstName = store.string(forKey: Keys.firstName) ?? ""
+        lastName = store.string(forKey: Keys.lastName) ?? ""
+        email = store.string(forKey: Keys.email) ?? ""
+        isLoggedIn = store.bool(forKey: Keys.isLoggedIn)
+        hasUnsavedChanges = false
+        debugPrint("Loaded from store")
+    }
+    
+    /// Saves the data stored in this view model to `store`.
+    func saveChanges() {
         store.set(firstName, forKey: Keys.firstName)
         store.set(lastName, forKey: Keys.lastName)
         store.set(email, forKey: Keys.email)
         store.set(isLoggedIn, forKey: Keys.isLoggedIn)
+        hasUnsavedChanges = false
+        debugPrint("Saved to store")
     }
 }
