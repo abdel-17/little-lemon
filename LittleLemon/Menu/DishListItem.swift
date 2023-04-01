@@ -32,6 +32,12 @@ struct DishListItem: View {
     }
 }
 
+extension Dish {
+    var formattedPrice: String {
+        String(format: "%.2f $", price)
+    }
+}
+
 struct DishListItem_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

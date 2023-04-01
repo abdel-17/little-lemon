@@ -10,11 +10,11 @@ import SwiftUI
 struct MenuView: View {
     @Environment(\.managedObjectContext) var viewContext
 
-    @State private var query = ""
+    @StateObject private var viewModel = MenuViewModel()
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Little Lemon")
                         .font(.largeTitle)
@@ -32,7 +32,7 @@ struct MenuView: View {
                     
                     TextField(
                         "Search",
-                        text: $query,
+                        text: $viewModel.searchQuery,
                         prompt: Text("Search for a dish")
                             .foregroundColor(.white)
                     )
@@ -41,37 +41,60 @@ struct MenuView: View {
                 .padding()
                 .background(Color("olive"))
                 
-                DishList(sortDescriptors: sortDescriptors, predicate: predicate)
+                VStack(alignment: .leading) {
+                    Text("Order for Delivery!")
+                        .font(.title3)
+                        .bold()
+                    
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(DishCategory.allCases) { category in
+                                DishCategoryView(viewModel: viewModel,
+                                                 category: category)
+                            }
+                        }
+                    }
+                }
+                .padding()
+                
+                Divider()
+                
+                DishList(sortDescriptors: viewModel.sortDescriptors,
+                         predicate: viewModel.predicate)
             }
             .task {
-                await loadDishes()
+                await viewModel.loadMenu(context: viewContext)
             }
         }
     }
+}
 
-    private var sortDescriptors: [NSSortDescriptor] {
-        [NSSortDescriptor(
-            key: "title",
-            ascending: true,
-            selector: #selector(NSString.localizedCaseInsensitiveCompare))]
-    }
+enum DishCategory: String, CaseIterable, Identifiable {
+    case starters, mains, desserts, drinks
+    
+    var id: Self { self }
+}
 
-    private var predicate: NSPredicate {
-        guard !query.isEmpty else {
-            return NSPredicate(value: true)
+private struct DishCategoryView: View {
+    @ObservedObject var viewModel: MenuViewModel
+    
+    let category: DishCategory
+    
+    var body: some View {
+        Button(category.rawValue.capitalized) {
+            withAnimation(.easeOut(duration: 0.25)) {
+                viewModel.toggle(category: category)
+            }
         }
-        return NSPredicate(format: "title CONTAINS[cd] %@", query)
+        .bold()
+        .tint(isSelected ? .olive : .secondary.opacity(0.35))
+        .foregroundColor(isSelected ? .white : .primary)
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.capsule)
     }
-
-    private func loadDishes() async {
-        let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")!
-        do {
-            let menu = try await Menu.json(url: url)
-            try Dish.deleteAll(context: viewContext)
-            try Dish.create(from: menu, context: viewContext)
-        } catch {
-            debugPrint("Error loading menu: \(error.localizedDescription)")
-        }
+    
+    var isSelected: Bool {
+        viewModel.selectedCategories.contains(category)
     }
 }
 
