@@ -56,7 +56,7 @@ struct ProfileTab: View {
                     .tint(.olive)
                     .disabled(!hasChanges || !loginData.isValid)
                 }
-                .padding(.top, 24)
+                .padding(.top, 32)
                 
                 Spacer()
             }
